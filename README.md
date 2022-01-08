@@ -6,14 +6,14 @@
 <br />
 <div align="center">
 
-<h3 align="center">Wyvern</h3>
+<h3 align="center">Wyvern2</h3>
 
   <p align="center">
-    Wyvern is a modern server software focusing on improving Minecraft Server software for optimizations and higher performance
+    Wyvern2 is a modern server software focusing on improving Minecraft Server software for optimizations and higher performance. Based on the original WyvernProject/Wyvern prior to it being archived.
     <br />
-    <a href="https://github.com/WyvernProject/Wyvern/issues">Report a Bug</a>
+    <a href="https://github.com/RackDevelopment/Wyvern2/issues">Report a Bug</a>
     -
-    <a href="https://github.com/WyvernProject/Wyvern/issues">Request a Feature</a>
+    <a href="https://github.com/RackDevelopment/Wyvern2/issues">Request a Feature</a>
   </p>
 </div>
 
@@ -52,6 +52,8 @@ In recent years, there has been a lot of improvements in Minecraft. For example,
 
 Wyvern focuses on improving four aspects from the base Minecraft Server. They are Security, Reliability, and of course, Optimization and Performance. Some of the largest Minecraft Servers still run outdated Minecraft versions, with the performance dropping at higher player counts on newer versions. We aim to fix that and bring high-performance Server Software to everyone, at no cost.
 
+Sadly, the original Wyvern project was closed down and archived, but this is a fork of the code made prior to the licensing and archiving, so we decided to reupload it licensed for all collaborators to do work with.
+
 ### Built With
 
 This project was never possible if these programs weren't exist
@@ -59,7 +61,7 @@ This project was never possible if these programs weren't exist
 * <a href="https://git-scm.com/">Git</a>
 * <a href="https://www.minecraft.net/">Minecraft</a>
 
-There are plenty more example codes we gathered from the internet. Please checkout the <a href="https://github.com/WyvernProject/Wyvern/blob/master/CREDIT.md">credit</a> file for more details
+There are plenty more example codes we gathered from the internet. Please checkout the <a href="https://github.com/RackDevelopment/Wyvern2/blob/master/CREDIT.md">credit</a> file for more details
 
 
 
@@ -68,40 +70,36 @@ There are plenty more example codes we gathered from the internet. Please checko
 
 We have made it very simple to get started with Wyvern, check out the sections below for detailed instructions.
 
-### Server Admins
-
-It is very simple to download Wyvern as a server software, you can download any version from the <a href="https://github.com/WyvernProject/Wyvern/releases">release</a> page.
-
 ### Developers
 
-We focus on making it as easy as possible for Developers to pick up and start development of both the Wyvern Project and any resources (plugins? need to find a name) that you wish to create.
+We focus on making it as easy as possible for Developers to pick up and start development of Wyvern modifications wish to create.
 If you want to help contribute to the Wyvern Project, head down to the <a href="#contributing">contributing</a> section.
 
-Resource Developers (plugins? same as above, need a name) can find our API JavaDocs <a href="#javadocs">here</a>.
-You can find a basic guide in how to start development of a Wyvern Resource (plugin?) <a href="#resource-getting-started">here</a>. 
+You can view our JavaDocs <a href="#javadocs">here</a>.
+You can find a basic guide in how to start development using Wyvern <a href="#resource-getting-started">here</a>. 
 
 <!-- Installation -->
 ## Installation
 
-sad
+This will be coming in the future. Stay Tuned.
 
 
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-sad
+This will be coming in the future. Stay Tuned.
 
 
 
 <!-- CONTRIBUTING -->
 ## Contributing
 
-sad
+Check out the CONTRIBUTING file.
 
 
 
 <!-- LICENSE -->
 ## License
 
-Wyvern is licensed under the BLANK license, you can view the full license <a href="https://github.com/WyvernProject/Wyvern/blob/master/LICENSE">here</a>.
+Wyvern2 is licensed under the GPLv3 license, you can view the full license <a href="https://github.com/WyvernProject/Wyvern/blob/master/LICENSE">here</a>.
