@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+# get scripts base regardless of execution location
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+    DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+    SOURCE="$(readlink "$SOURCE")"
+    [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+scriptsBase="$(dirname "$SOURCE")"
+. "$scriptsBase/init"
+
+function rebuildPatches {
+    target="$1"
+	patch_folder="$2"
+
+    cd "$basedir/$target/"
+	if [[ "$target" == "${NAME}-Server" ]]; then
+		git format-patch --diff-algorithm=minimal --no-signature --zero-commit --full-index --no-stat -N -o "$basedir/patches/$patch_folder" `git rev-list --max-parents=0 HEAD` >/dev/null
+	else
+		git format-patch --diff-algorithm=minimal --no-signature --zero-commit --full-index --no-stat -N -o "$basedir/patches/$patch_folder" --root >/dev/null
+	fi
+    echo "  Patches saved for $target to patches/$patch_folder"
+}
+
+(
+	echo ""
+	echo "Rebuilding patch files from current fork state..."
+	echo ""
+
+    delete "$patchDir"
+
+	rebuildPatches "${NAME}-Server" server
+	rebuildPatches "${NAME}-API" api
+) || exit 1

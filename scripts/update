@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+
+# get scripts base regardless of execution location
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+    DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+    SOURCE="$(readlink "$SOURCE")"
+    [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+scriptsBase="$(dirname "$SOURCE")"
+. "$scriptsBase/init"
+
+function updateDecompiler {
+	(
+		local previousVersion="$(source "$scriptsBase/decompile"; echo $previousVersion)"
+		local currentVersion="$(source "$scriptsBase/decompile"; echo $currentVersion)"
+		local newVersion="$1"
+
+		if (version_lt "$currentVersion" "$newVersion"); then
+			echo "No newer version available"
+			echo "Leaving..."
+			exit 0
+		fi	
+		
+		change_line "previousVersion=$previousVersion" "previousVersion=$currentVersion" "$scriptsBase/decompile"
+		change_line "currentVersion=$currentVersion" "currentVersion=$newVersion" "$scriptsBase/decompile"
+		
+		cd "$basedir"
+		git add "$scriptsBase/decompile"
+			
+		cd "$scriptsBase"
+		local updated="ForgeFlower"
+		local disclaimer="Upstream has released an update that appear that we updated correctly"
+		local log="Updated Upstream ($updated)\n\n${disclaimer}\nWe upgraded ForgeFlower from version $currentVersion to version $newVersion."
+
+		echo -e "$log" | git commit -F -
+	)
+}
+
+function updateRemapper {
+	(
+		cd "$remapper"
+		git fetch origin master && git reset --hard origin/master
+		cd "$basedir"
+		git add "$remapper"
+		
+		local remapperChangeLog=$(changelog work/MC-Remapper)
+		local updated=""
+		local logsuffix=""
+		
+		if [ -n "$remapperChangeLog" ]; then
+			logsuffix="\n\nMC-Remapper Changes:\n$remapperChangeLog"
+			if [ -z "$updated" ]; then 
+				updated="Remapper"
+			else 
+				updated="$updated/Paper"
+			fi
+		fi
+			
+		local disclaimer="Upstream has released an update that appear that we updated correctly"
+		local log="Updated Upstream ($updated)\n\n${disclaimer}${logsuffix}"
+
+		echo -e "$log" | git commit -F -
+	)
+}
+
+(
+	
+	if [[ "$1" == "decompiler" ]]; then
+		updateDecompiler "$2"
+	elif [[ "$1" == "remapper" ]]; then
+		updateRemapper
+	fi
+) || exit 1
