@@ -3,79 +3,49 @@
 # get scripts base regardless of execution location
 SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
-    DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
-    SOURCE="$(readlink "$SOURCE")"
-    [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+  DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
 done
 scriptsBase="$(dirname "$SOURCE")/scripts"
 . "$scriptsBase/init"
 
 set -e
 case "$1" in
-    "install")
-		if [[ "$2" != "skip" ]]; then
-			"$scriptsBase/build" "$2"
-		fi
-		mvn clean install
-    ;;
-    "package")
-		if [[ "$2" != "skip" ]]; then
-			"$scriptsBase/build" "$2"
-		fi
-		mvn clean package
-    ;;
-    "build")
-		if [[ "$2" != "skip" ]]; then
-			"$scriptsBase/build" "$2"
-		fi
-		mvn -N install
-		(cd "${NAME}-API" && mvn clean install)
-		(cd "${NAME}-Server" && mvn clean package)
-    ;;
-    "apply" | "patch")
-		"$scriptsBase/build" "$2"
-    ;;
-    "rb")
-		"$scriptsBase/rebuildpatches"
-    ;;
-    "update")
-		"$scriptsBase/update" "$2" "$3"
-    ;;
-    "push")
-		echo ""
-		git push -u --force origin master
-			
-		echo ""
-        echo "  Pushed repository to github."
-    ;;
-    "ch" | "clearh")
-		delete "${NAME}-Server" "msg"
-		delete "${NAME}-API" "msg"
-		delete "$workdir" "msg"
-		delete ".git" "msg"
-		delete ".idea"
-		
-		echo ""
-		git init
-		echo ""
-		
-		git submodule add "https://github.com/HeartPattern/MC-Remapper" "work/MC-Remapper"
-		git submodule update --init --recursive
-		git remote add origin https://github.com/WyvernProject/Wyvern
-		
-		echo ""
-		git add -- . ':!*.patch'
-		echo ""
-		git commit -u -m "Let's get this project started! The Wyvern project!"
-			
-		echo ""
-        echo "  Cleared history."
-    ;;
-    *)
-		echo "Wyvern is a project focusing on improving Minecraft software. We provide a variety of scripts to manage Wyvern's environment."
-		echo "You can improve the scripts by creating a pull request, and we would be so grateful if you do so!"
-		echo ""
-		echo "List of commands:"
-	;;
+"install")
+  if [[ "$2" != "skip" ]]; then
+    "$scriptsBase/build" "$2"
+  fi
+  mvn clean install
+  ;;
+"package")
+  if [[ "$2" != "skip" ]]; then
+    "$scriptsBase/build" "$2"
+  fi
+  mvn clean package
+  ;;
+"build")
+  if [[ "$2" != "skip" ]]; then
+    "$scriptsBase/build" "$2"
+  fi
+  mvn -N install
+  (cd "${NAME}-API" && mvn clean install)
+  (cd "${NAME}-Server" && mvn clean package)
+  ;;
+"apply" | "patch")
+  "$scriptsBase/build" "$2"
+  ;;
+"rb")
+  "$scriptsBase/rebuildpatches"
+  ;;
+"update")
+  "$scriptsBase/update" "$2" "$3"
+  ;;
+*)
+  echo "Wyvern is a project focusing on improving Minecraft software. We provide a variety of scripts to manage Wyvern's environment."
+  echo "You can improve the scripts by creating a pull request, and we would be so grateful if you do so!"
+  echo ""
+  echo "List of commands:"
+  ;;
 esac
 set +e
