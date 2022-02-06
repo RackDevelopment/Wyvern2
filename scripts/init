@@ -2,7 +2,7 @@
 
 # Global config
 NAME="Wyvern"
-VERSION="1.16.5"
+VERSION="1.18.1"
 
 # Locations
 basedir="$(cd $scriptsBase/../ && pwd -P)"
