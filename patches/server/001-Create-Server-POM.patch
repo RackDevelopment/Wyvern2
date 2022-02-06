@@ -1,0 +1,30 @@
+Index: Wyvern-Server/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Wyvern-Server/pom.xml b/Wyvern-Server/pom.xml
+new file mode 100644
+--- /dev/null	(date 1644159108958)
++++ b/Wyvern-Server/pom.xml	(date 1644159108958)
+@@ -0,0 +1,19 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project xmlns="http://maven.apache.org/POM/4.0.0"
++         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
++         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
++    <parent>
++        <artifactId>Wyvern</artifactId>
++        <groupId>tech.rackdevelopment.wyvern</groupId>
++        <version>1.18.1</version>
++    </parent>
++    <modelVersion>4.0.0</modelVersion>
++
++    <artifactId>Wyvern-Server</artifactId>
++
++    <properties>
++        <maven.compiler.source>17</maven.compiler.source>
++        <maven.compiler.target>17</maven.compiler.target>
++    </properties>
++
++</project>
+\ No newline at end of file

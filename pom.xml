@@ -6,15 +6,15 @@
     <groupId>tech.rackdevelopment.wyvern</groupId>
     <artifactId>Wyvern</artifactId>
     <version>1.18.1</version>
+    <modules>
+        <module>Wyvern-API</module>
+        <module>Wyvern-Server</module>
+    </modules>
     <packaging>pom</packaging>
 
     <name>Wyvern</name>
     <description>Parent project for all Wyvern modules.</description>
 
-    <modules>
-        <module>Wyvern-Server</module>
-        <module>Wyvern-API</module>
-    </modules>
 
     <build>
         <defaultGoal>clean install</defaultGoal>

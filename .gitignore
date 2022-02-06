@@ -112,6 +112,6 @@ buildNumber.properties
 # Common working directory
 run/
 
-Wyvern-Server
-Wyvern-API
+Wyvern-Server/
+Wyvern-API/
 work/ForgeFlower
