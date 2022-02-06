@@ -32,10 +32,10 @@ case "$1" in
   (cd "${NAME}-API" && mvn clean install)
   (cd "${NAME}-Server" && mvn clean package)
   ;;
-"apply" | "patch")
+"apply" | "patch" | "applyPatches")
   "$scriptsBase/build" "$2"
   ;;
-"rb")
+"rb" | "rebuildPatches")
   "$scriptsBase/rebuildpatches"
   ;;
 "update")
@@ -46,6 +46,12 @@ case "$1" in
   echo "You can improve the scripts by creating a pull request, and we would be so grateful if you do so!"
   echo ""
   echo "List of commands:"
+  echo "wyvern install -> Run the Install Script (Maven)"
+  echo "wyvern package -> Run the Package Script (Maven)"
+  echo "wyvern build -> Build the entire Project"
+  echo "wyvern [apply,patch,applyPatches] -> Apply all Patches"
+  echo "wyvern [rb,rebuildPatches] -> Rebuild all Patches"
+  echo "wyvern update -> Run the Update Script"
   ;;
 esac
 set +e
