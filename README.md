@@ -7,9 +7,8 @@
 <div align="center">
 
 <h3 align="center">Wyvern2</h3>
-
-  <p align="center">
-    Wyvern2 is a modern server software focusing on improving Minecraft Server software for optimizations and higher performance. Based on the original WyvernProject/Wyvern prior to it being archived.
+  <p align="center">    
+    We focus on enhancing vanilla Minecraft without sacrificing any behavior or features. You can think of this project as vanilla Minecraft, but with even more optimization and higher performance.
     <br />
     <a href="https://github.com/RackDevelopment/Wyvern2/issues">Report a Bug</a>
     -
@@ -46,13 +45,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Wyvern is a modern server software focusing on improving the Minecraft Server for optimization and performance.
+Wyvern is a modern vanilla server software focusing on improving the Minecraft Server for optimization and performance.
 
-In recent years, there has been a lot of improvements in Minecraft. For example, version 1.13 to version 1.15 are the best in terms of performance. The main goal of this project is to improve Minecraft Server software for even more optimization and higher performance.
+In recent years, there has been a lot of improvements in Minecraft, but many of them come at a sacrifice to performance. The main goal of this project is to improve the vanilla Minecraft Server software for even more optimization and higher performance.
 
 Wyvern focuses on improving four aspects from the base Minecraft Server. They are Security, Reliability, and of course, Optimization and Performance. Some of the largest Minecraft Servers still run outdated Minecraft versions, with the performance dropping at higher player counts on newer versions. We aim to fix that and bring high-performance Server Software to everyone, at no cost.
-
-Sadly, the original Wyvern project was closed down and archived, but this is a fork of the code made prior to the licensing and archiving, so we decided to reupload it licensed for all collaborators to do work with.
 
 ### Built With
 
