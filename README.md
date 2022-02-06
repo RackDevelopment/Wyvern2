@@ -9,6 +9,8 @@
 <h3 align="center">Wyvern2</h3>
 
   <p align="center">
+    This readme is out of date, and does not reflect the goal of Wyvern, and updated readme will be out soon to address this problem.
+    
     Wyvern2 is a modern server software focusing on improving Minecraft Server software for optimizations and higher performance. Based on the original WyvernProject/Wyvern prior to it being archived.
     <br />
     <a href="https://github.com/RackDevelopment/Wyvern2/issues">Report a Bug</a>
