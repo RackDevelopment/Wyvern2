@@ -10,8 +10,8 @@ done
 scriptsBase="$(dirname "$SOURCE")"
 . "$scriptsBase/init"
 
-previousVersion=1.5.498.22
-currentVersion=1.5.498.23
+previousVersion=""
+currentVersion="1.5.498.23"
 
 extractClassOutput="$forgeflower/classes"
 srcOutput="$forgeflower/minecraft/src/main/"
@@ -22,51 +22,52 @@ jar="$forgeflower/Server-${VERSION}.jar"
 previousDecompiler="$forgeflower/forgeflower-$previousVersion.jar"
 decompiler="$forgeflower/forgeflower-$currentVersion.jar"
 
-downloadURL="https://maven.minecraftforge.net/net/minecraftforge/forgeflower/1.5.498.23/forgeflower-1.5.498.23.jar"
+downloadURL="https://maven.minecraftforge.net/net/minecraftforge/forgeflower/$currentVersion/forgeflower-$currentVersion.jar"
 
 (
 
-	mkdir -p "$extractClassOutput"
-	mkdir -p "$classOutput"
-	mkdir -p "$resourcesOutput"
-	
-		
-	echo ""
-	echo "Extracting NMS classes..."
-		delete "$extractClassOutput" "mkdir"
-		cd "$extractClassOutput"
-		
-		jar xf "$jar" net/minecraft com/mojang/math
-		
-		if [ "$?" != "0" ]; then
-			cd "$basedir"
-			echo "  Failed to extract NMS classes."
-			exit 1
-		fi
+    mkdir -p "$extractClassOutput"
+    mkdir -p "$classOutput"
+    mkdir -p "$resourcesOutput"
 
-	echo "  Extracting assets and data..."
-		delete "$resourcesOutput" "mkdir"
-		cd "$resourcesOutput"
-		
-		jar xf "$jar" data assets log4j2.xml Log4j-levels.xsd pack.mcmeta version.json
-		
-		if [ "$?" != "0" ]; then
-			cd "$basedir"
-			echo "  Failed to extract assets and data."
-			exit 1
-		fi
-	
-	echo "  Decompiling classes..."
-	echo ""
-		cd "$basedir"
-		delete "$previousDecompiler"
-		curl -o $decompiler $downloadURL
-		
-		java -jar "$decompiler" -dgs=1 -hdc=0 -asc=1 -rsy=1 -aoa=1 -jvn=1 -ind='    ' "$extractClassOutput" "$classOutput"
-		
-		if [ "$?" != "0" ]; then
-			echo "  Failed to decompile classes."
-			exit 1
-		fi
 
-) || exit 1
+    echo ""
+    echo "Extracting NMS classes..."
+      delete "$extractClassOutput" "mkdir"
+      cd "$extractClassOutput"
+
+      jar xf "$jar" net/minecraft com/mojang/math
+
+      if [ "$?" != "0" ]; then
+        cd "$basedir"
+        echo "  Failed to extract NMS classes."
+        exit 1
+      fi
+
+    echo "  Extracting assets and data..."
+      delete "$resourcesOutput" "mkdir"
+      cd "$resourcesOutput"
+
+      jar xf "$jar" data assets log4j2.xml Log4j-levels.xsd pack.mcmeta version.json
+
+      if [ "$?" != "0" ]; then
+        cd "$basedir"
+        echo "  Failed to extract assets and data."
+        exit 1
+      fi
+
+    echo "  Decompiling classes..."
+    echo ""
+      cd "$basedir"
+      delete "$previousDecompiler"
+      curl -L -o $decompiler $downloadURL
+
+      java -jar "$decompiler" -dgs=1 -hdc=0 -asc=1 -rsy=1 -aoa=1 -jvn=1 -ind='    ' "$extractClassOutput" "$classOutput"
+
+      if [ "$?" != "0" ]; then
+        cd "$basedir"
+        echo "  Failed to decompile classes."
+        exit 1
+      fi
+
+)

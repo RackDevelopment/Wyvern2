@@ -14,11 +14,15 @@ bin="$remapper/build/install/MC-Remapper/bin"
 jar="$forgeflower/Server-${VERSION}.jar"
 
 (
+
+    if [[ ! -d "$bin" ]]; then
         git submodule update --init --recursive
-	cd "$remapper"
-	./gradlew installDist
-	
-	cd "$bin"
-	delete "$forgeflower" "mkdir"
-	./MC-Remapper server ${VERSION} --output $jar --fixlocalvar=rename --thread 12
+    fi
+    cd "$remapper"
+    ./gradlew installDist
+
+    cd "$bin"
+    delete "$forgeflower" "mkdir"
+    ./MC-Remapper server ${VERSION} --output $jar --fixlocalvar=rename --thread 6
+
 ) || exit 1

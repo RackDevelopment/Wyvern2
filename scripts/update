@@ -11,64 +11,65 @@ scriptsBase="$(dirname "$SOURCE")"
 . "$scriptsBase/init"
 
 function updateDecompiler {
-	(
-		local previousVersion="$(source "$scriptsBase/decompile"; echo $previousVersion)"
-		local currentVersion="$(source "$scriptsBase/decompile"; echo $currentVersion)"
-		local newVersion="$1"
+    (
+        local previousVersion="$(cat "$scriptsBase/decompile" | grep -m1 previousVersion | cut --complement -d '"' -f 1,3)"
+        local currentVersion="$(cat "$scriptsBase/decompile" | grep -m1 currentVersion | cut --complement -d '"' -f 1,3)"
+        local newVersion="$1"
 
-		if (version_lt "$currentVersion" "$newVersion"); then
-			echo "No newer version available"
-			echo "Leaving..."
-			exit 0
-		fi	
-		
-		change_line "previousVersion=$previousVersion" "previousVersion=$currentVersion" "$scriptsBase/decompile"
-		change_line "currentVersion=$currentVersion" "currentVersion=$newVersion" "$scriptsBase/decompile"
-		
-		cd "$basedir"
-		git add "$scriptsBase/decompile"
-			
-		cd "$scriptsBase"
-		local updated="ForgeFlower"
-		local disclaimer="Upstream has released an update that appear that we updated correctly"
-		local log="Updated Upstream ($updated)\n\n${disclaimer}\nWe upgraded ForgeFlower from version $currentVersion to version $newVersion."
+        if (version_lt "$currentVersion" "$newVersion"); then
+            echo "No newer version available"
+            echo "Leaving..."
+            exit 0
+        fi
 
-		echo -e "$log" | git commit -F -
-	)
+        change_line "previousVersion=\"$previousVersion\"" "previousVersion=\"$currentVersion\"" "$scriptsBase/decompile"
+        change_line "currentVersion=\"$currentVersion\"" "currentVersion=\"$newVersion\"" "$scriptsBase/decompile"
+
+        cd "$basedir"
+        git add "$scriptsBase/decompile"
+
+        local changes="Upgraded from version $currentVersion to version $newVersion."
+        local disclaimer="ForgeFlower has released updates that appear to apply correctly."
+
+        if [ -n "$2" ]; then
+            disclaimer="$2"
+        fi
+
+        local log="Updated ForgeFlower\n\n${disclaimer} ${changes}"
+        echo -e "$log" | git commit -F -
+    )
 }
 
 function updateRemapper {
-	(
-		cd "$remapper"
-		git fetch origin master && git reset --hard origin/master
-		cd "$basedir"
-		git add "$remapper"
-		
-		local remapperChangeLog=$(changelog work/MC-Remapper)
-		local updated=""
-		local logsuffix=""
-		
-		if [ -n "$remapperChangeLog" ]; then
-			logsuffix="\n\nMC-Remapper Changes:\n$remapperChangeLog"
-			if [ -z "$updated" ]; then 
-				updated="Remapper"
-			else 
-				updated="$updated/Paper"
-			fi
-		fi
-			
-		local disclaimer="Upstream has released an update that appear that we updated correctly"
-		local log="Updated Upstream ($updated)\n\n${disclaimer}${logsuffix}"
+    (
+        cd "$remapper"
+        git fetch origin master && git reset --hard origin/master
+        cd "$basedir"
+        git add "$remapper"
 
-		echo -e "$log" | git commit -F -
-	)
+        local remapperChange=$(changelog $remapper)
+        local changes=""
+        local disclaimer="MC-Remapper has released updates that appear to apply correctly."
+
+        if [ -n "$remapperChange" ]; then
+            changes="Changes:\n$remapperChange"
+        fi
+
+        if [ -n "$1" ]; then
+            disclaimer="$1"
+        fi
+
+        local log="Updated MC-Remapper\n\n${disclaimer}\n\n${changes}"
+        echo -e "$log" | git commit -F -
+    )
 }
 
 (
-	
-	if [[ "$1" == "decompiler" ]]; then
-		updateDecompiler "$2"
-	elif [[ "$1" == "remapper" ]]; then
-		updateRemapper
-	fi
+
+    if [[ "$1" == "decompiler" ]]; then
+        updateDecompiler "$2" "$3"
+    elif [[ "$1" == "remapper" ]]; then
+        updateRemapper "$2"
+    fi
+
 ) || exit 1

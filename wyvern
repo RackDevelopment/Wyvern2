@@ -3,55 +3,33 @@
 # get scripts base regardless of execution location
 SOURCE="${BASH_SOURCE[0]}"
 while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
-  DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
-  SOURCE="$(readlink "$SOURCE")"
-  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+    DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+    SOURCE="$(readlink "$SOURCE")"
+    [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
 done
 scriptsBase="$(dirname "$SOURCE")/scripts"
 . "$scriptsBase/init"
 
 set -e
 case "$1" in
-"install")
-  if [[ "$2" != "skip" ]]; then
-    "$scriptsBase/build" "$2"
-  fi
-  mvn clean install
-  ;;
-"package")
-  if [[ "$2" != "skip" ]]; then
-    "$scriptsBase/build" "$2"
-  fi
-  mvn clean package
-  ;;
-"build")
-  if [[ "$2" != "skip" ]]; then
-    "$scriptsBase/build" "$2"
-  fi
-  mvn -N install
-  (cd "${NAME}-API" && mvn clean install)
-  (cd "${NAME}-Server" && mvn clean package)
-  ;;
-"apply" | "patch" | "applyPatches")
-  "$scriptsBase/build" "$2"
-  ;;
-"rb" | "rebuildPatches")
-  "$scriptsBase/rebuildpatches"
-  ;;
-"update")
-  "$scriptsBase/update" "$2" "$3"
-  ;;
-*)
-  echo "Wyvern is a project focusing on improving Minecraft software. We provide a variety of scripts to manage Wyvern's environment."
-  echo "You can improve the scripts by creating a pull request, and we would be so grateful if you do so!"
-  echo ""
-  echo "List of commands:"
-  echo "wyvern install -> Run the Install Script (Maven)"
-  echo "wyvern package -> Run the Package Script (Maven)"
-  echo "wyvern build -> Build the entire Project"
-  echo "wyvern [apply,patch,applyPatches] -> Apply all Patches"
-  echo "wyvern [rb,rebuildPatches] -> Rebuild all Patches"
-  echo "wyvern update -> Run the Update Script"
-  ;;
+        "apply" | "patch")
+        "$scriptsBase/build" "$2"
+    ;;
+        "rebuild" | "rb")
+        "$scriptsBase/rebuildpatches"
+    ;;
+        "update" | "upgrade")
+        "$scriptsBase/update" "$2" "$3" "$4"
+    ;;
+    *)
+        echo "Wyvern is an active project focuses on improving vanilla Minecraft without sacrificing"
+        echo "any expected behaviors or features. We provides several scripts for you to interact with"
+        echo "this repository just as easy as a breeze"
+        echo ""
+        echo "  List of commands:"
+        echo "    apply    │  decompile then apply patches on top of Minecraft"
+        echo "    rebuild  │  rebuild the patches"
+        echo "    update   │  update the decompiler or the remapper"
+    ;;
 esac
 set +e
