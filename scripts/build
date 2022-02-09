@@ -12,10 +12,10 @@ scriptsBase="$(dirname "$SOURCE")"
 
 (
 
-	if [[ "$1" != "fast" ]]; then
-		"$scriptsBase/remap"
-		"$scriptsBase/decompile"
-	fi
-	"$scriptsBase/apply"
+    if [[ "$1" != "fast" ]]; then
+        "$scriptsBase/remap"
+        "$scriptsBase/decompile"
+    fi
+    "$scriptsBase/apply"
 
 ) || exit 1

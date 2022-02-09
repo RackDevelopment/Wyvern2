@@ -1,0 +1,66 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: WyvernPJ <wyvernpj@gmail.com>
+Date: Tue, 8 Feb 2022 19:22:49 +0700
+Subject: [PATCH] Wyvern-API POM
+
+
+diff --git a/pom.xml b/pom.xml
+new file mode 100644
+index 0000000000000000000000000000000000000000..cff111fde321a2aa0966123abdff1a164671f58c
+--- /dev/null
++++ b/pom.xml
+@@ -0,0 +1,54 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project xmlns="http://maven.apache.org/POM/4.0.0"
++         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
++         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
++    <modelVersion>4.0.0</modelVersion>
++
++    <groupId>tech.rackdevelopment.wyvern</groupId>
++    <artifactId>wyvern-api</artifactId>
++    <version>1.18.1</version>
++    <packaging>jar</packaging>
++
++    <name>Wyvern-API</name>
++
++    <properties>
++        <java.version>17</java.version>
++        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
++    </properties>
++
++    <build>
++        <plugins>
++            <plugin>
++                <groupId>org.apache.maven.plugins</groupId>
++                <artifactId>maven-compiler-plugin</artifactId>
++                <version>3.8.1</version>
++                <configuration>
++                    <source>${java.version}</source>
++                    <target>${java.version}</target>
++                </configuration>
++            </plugin>
++            <plugin>
++                <groupId>org.apache.maven.plugins</groupId>
++                <artifactId>maven-shade-plugin</artifactId>
++                <version>3.2.4</version>
++                <executions>
++                    <execution>
++                        <phase>package</phase>
++                        <goals>
++                            <goal>shade</goal>
++                        </goals>
++                        <configuration>
++                            <createDependencyReducedPom>false</createDependencyReducedPom>
++                        </configuration>
++                    </execution>
++                </executions>
++            </plugin>
++        </plugins>
++        <resources>
++            <resource>
++                <directory>src/main/resources</directory>
++                <filtering>true</filtering>
++            </resource>
++        </resources>
++    </build>
++</project>

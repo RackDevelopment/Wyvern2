@@ -6,52 +6,48 @@ VERSION="1.18.1"
 
 # Locations
 basedir="$(cd $scriptsBase/../ && pwd -P)"
+patchDir="$basedir/patches"
 workdir="$basedir/work"
 forgeflower="$workdir/ForgeFlower"
 remapper="$workdir/MC-Remapper"
-patchDir="$basedir/patches"
 
 # Functions
 function change_line {
-	local OLD_LINE_PATTERN=$1; shift
-	local NEW_LINE=$1; shift
-	local FILE=$1
-	local NEW=$(echo "${NEW_LINE}" | sed 's/\//\\\//g')
-	
-	touch "${FILE}"
-	sed -i '/'"${OLD_LINE_PATTERN}"'/{s/.*/'"${NEW}"'/;h};${x;/./{x;q100};x}' "${FILE}"
-	
-	if [[ $? -ne 100 ]] && [[ ${NEW_LINE} != '' ]]; then
-		echo -e "${NEW_LINE}" >> "${FILE}"
-	fi
-}
+    local OLD_LINE_PATTERN="$1"
+    local NEW_LINE="$2"
+    local FILE="$3"
+    local NEW=$(echo "${NEW_LINE}" | sed 's/\//\\\//g')
 
-function version_gt() {
-	test "$(echo -e "$@" | tr " " "\n" | sort -rV | head -n 1)" == "$2"
+    touch "${FILE}"
+    sed -i '/'"${OLD_LINE_PATTERN}"'/{s/.*/'"${NEW}"'/;h};${x;/./{x;q100};x}' "${FILE}"
+
+    if [[ $? -ne 100 ]] && [[ ${NEW_LINE} != '' ]]; then
+        echo -e "${NEW_LINE}" >> "${FILE}"
+    fi
 }
 
 function version_lt() {
-	test "$(echo -e "$@" | tr " " "\n" | sort -rV | head -n 1)" == "$1"
+    test "$(echo -e "$@" | tr " " "\n" | sort -rV | head -n 1)" == "$1"
 }
 
 function changelog {
-    base=$(git ls-tree HEAD $1  | cut -d' ' -f3 | cut -f1)
+    local base=$(git ls-tree HEAD $1  | cut -d' ' -f3 | cut -f1)
     cd $1 && git log --oneline ${base}...HEAD
 }
 
 function delete {
-	if [[ -e "$1" ]] || [[ -d "$1" ]]; then
-		rm -rf "$1"
-		
-		if [[ "$2" == "msg" ]]; then
-			echo ""
-			echo "  Deleted $(basename $1)"
-		fi
-	fi
-		
-	if [[ "$2" == "mkdir" ]] || [[ "$3" == "mkdir" ]]; then
-		mkdir -p "$1"
-	fi
+    if [[ -e "$1" ]] || [[ -d "$1" ]]; then
+        rm -rf "$1"
+
+        if [[ "$2" == "msg" ]]; then
+            echo ""
+            echo "  Deleted $(basename $1)"
+        fi
+    fi
+
+    if [[ "$2" == "mkdir" ]] || [[ "$3" == "mkdir" ]]; then
+        mkdir -p "$1"
+    fi
 }
 
 function enableCommitSigning {

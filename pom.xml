@@ -1,20 +1,19 @@
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <!-- Avoid making changes to this file, it has to be deployed manually -->
     <groupId>tech.rackdevelopment.wyvern</groupId>
-    <artifactId>Wyvern</artifactId>
+    <artifactId>wyvern-parent</artifactId>
     <version>1.18.1</version>
-    <modules>
-        <module>Wyvern-API</module>
-        <module>Wyvern-Server</module>
-    </modules>
     <packaging>pom</packaging>
 
-    <name>Wyvern</name>
+    <name>Wyvern-Parent</name>
     <description>Parent project for all Wyvern modules.</description>
 
+    <modules>
+        <module>Wyvern-Server</module>
+        <module>Wyvern-API</module>
+    </modules>
 
     <build>
         <defaultGoal>clean install</defaultGoal>
