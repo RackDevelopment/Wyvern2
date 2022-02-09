@@ -16,7 +16,7 @@ index 0000000000000000000000000000000000000000..6a10c3c1d74825200205fba0bd687db9
 +         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 +    <modelVersion>4.0.0</modelVersion>
 +
-+    <groupId>com.wyvern</groupId>
++    <groupId>tech.rackdevelopment.wyvern</groupId>
 +    <artifactId>wyvern-server</artifactId>
 +    <version>1.18.1</version>
 +    <packaging>jar</packaging>
