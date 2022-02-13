@@ -62,7 +62,7 @@ downloadURL="https://github.com/QuiltMC/quiltflower/releases/download/$currentVe
       delete "$previousDecompiler"
       curl -L -o $decompiler $downloadURL
 
-      java -jar "$decompiler" -dgs=1 -hdc=0 -asc=1 -rsy=1 -aoa=1 -jvn=1 -ind='    ' "$extractClassOutput" "$classOutput"
+      java -jar "$decompiler" -dgs=1 -hdc=0 -asc=1 -rsy=1 -aoa=1 --legacy-saving -jvn=1 -ind='    ' "$extractClassOutput" "$classOutput"
 
       if [ "$?" != "0" ]; then
         cd "$basedir"
