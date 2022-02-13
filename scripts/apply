@@ -22,7 +22,7 @@ function applyPatches {
 
     # Reset to minecraft source
     if [[ "$target" ==  "${NAME}-Server" ]]; then
-        cp -r "$forgeflower/minecraft/src" ./
+        cp -r "$quiltflower/minecraft/src" ./
         git add . > /dev/null 2>&1
         git commit -m "Created $1" > /dev/null 2>&1
     fi
@@ -30,7 +30,7 @@ function applyPatches {
     git config commit.gpgsign false
 
     # Apply patch and debugging if the patches is applied cleanly or not.
-    echo "  Applying patches to $target..."
+    echo "  Applying patches to $target... This can take a long time."
     echo ""
 
     git am --abort >/dev/null 2>&1

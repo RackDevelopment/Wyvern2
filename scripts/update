@@ -29,13 +29,13 @@ function updateDecompiler {
         git add "$scriptsBase/decompile"
 
         local changes="Upgraded from version $currentVersion to version $newVersion."
-        local disclaimer="ForgeFlower has released updates that appear to apply correctly."
+        local disclaimer="QuiltFlower has released updates that appear to apply correctly."
 
         if [ -n "$2" ]; then
             disclaimer="$2"
         fi
 
-        local log="Updated ForgeFlower\n\n${disclaimer} ${changes}"
+        local log="Updated QuiltFlower\n\n${disclaimer} ${changes}"
         echo -e "$log" | git commit -F -
     )
 }

@@ -11,7 +11,7 @@ scriptsBase="$(dirname "$SOURCE")"
 . "$scriptsBase/init"
 
 bin="$remapper/build/install/MC-Remapper/bin"
-jar="$forgeflower/Server-${VERSION}.jar"
+jar="$quiltflower/Server-${VERSION}.jar"
 
 (
 
@@ -22,7 +22,7 @@ jar="$forgeflower/Server-${VERSION}.jar"
     ./gradlew installDist
 
     cd "$bin"
-    delete "$forgeflower" "mkdir"
+    delete "$quiltflower" "mkdir"
     ./MC-Remapper server ${VERSION} --output $jar --fixlocalvar=rename --thread 6
 
 ) || exit 1

@@ -57,6 +57,8 @@ This project was never possible if these programs weren't exist
 * <a href="https://maven.apache.org">Apache Maven</a>
 * <a href="https://git-scm.com/">Git</a>
 * <a href="https://www.minecraft.net/">Minecraft</a>
+* <a href="https://github.com/QuiltMC/quiltflower">QuiltFlower</a>
+* <a href="https://github.com/HeartPattern/MC-Remapper">MC-Remapper</a>
 
 There are plenty more example codes we gathered from the internet. Please checkout the <a href="https://github.com/RackDevelopment/Wyvern2/blob/master/CREDIT.md">credit</a> file for more details
 

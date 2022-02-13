@@ -11,18 +11,18 @@ scriptsBase="$(dirname "$SOURCE")"
 . "$scriptsBase/init"
 
 previousVersion=""
-currentVersion="1.5.498.23"
+currentVersion="1.7.0"
 
-extractClassOutput="$forgeflower/classes"
-srcOutput="$forgeflower/minecraft/src/main/"
+extractClassOutput="$quiltflower/classes"
+srcOutput="$quiltflower/minecraft/src/main/"
 classOutput="$srcOutput/java"
 resourcesOutput="$srcOutput/resources"
 
-jar="$forgeflower/Server-${VERSION}.jar"
-previousDecompiler="$forgeflower/forgeflower-$previousVersion.jar"
-decompiler="$forgeflower/forgeflower-$currentVersion.jar"
+jar="$quiltflower/Server-${VERSION}.jar"
+previousDecompiler="$quiltflower/quiltflower-$previousVersion.jar"
+decompiler="$quiltflower/quiltflower-$currentVersion.jar"
 
-downloadURL="https://maven.minecraftforge.net/net/minecraftforge/forgeflower/$currentVersion/forgeflower-$currentVersion.jar"
+downloadURL="https://github.com/QuiltMC/quiltflower/releases/download/$currentVersion/quiltflower-$currentVersion.jar"
 
 (
 
