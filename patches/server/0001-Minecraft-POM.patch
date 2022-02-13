@@ -74,7 +74,7 @@ index 0000000000000000000000000000000000000000..6a10c3c1d74825200205fba0bd687db9
 +
 +    <dependencies>
 +        <dependency>
-+            <groupId>com.wyvern</groupId>
++            <groupId>tech.rackdevelopment.wyvern</groupId>
 +            <artifactId>wyvern-api</artifactId>
 +            <version>1.18.1</version>
 +        </dependency>
