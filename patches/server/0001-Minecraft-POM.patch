@@ -18,7 +18,7 @@ index 0000000000000000000000000000000000000000..6a10c3c1d74825200205fba0bd687db9
 +
 +    <groupId>tech.rackdevelopment.wyvern</groupId>
 +    <artifactId>wyvern-server</artifactId>
-+    <version>1.18.1</version>
++    <version>22w11a</version>
 +    <packaging>jar</packaging>
 +
 +    <name>Wyvern-Server</name>
