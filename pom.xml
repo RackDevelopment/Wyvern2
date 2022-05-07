@@ -4,7 +4,7 @@
 
     <groupId>tech.rackdevelopment.wyvern</groupId>
     <artifactId>wyvern-parent</artifactId>
-    <version>1.18.1</version>
+    <version>1.18.2</version>
     <packaging>pom</packaging>
 
     <name>Wyvern-Parent</name>

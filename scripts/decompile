@@ -11,7 +11,7 @@ scriptsBase="$(dirname "$SOURCE")"
 . "$scriptsBase/init"
 
 previousVersion=""
-currentVersion="1.7.0"
+currentVersion="1.8.1"
 
 extractClassOutput="$quiltflower/classes"
 srcOutput="$quiltflower/minecraft/src/main/"
