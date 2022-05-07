@@ -10,8 +10,12 @@ done
 scriptsBase="$(dirname "$SOURCE")"
 . "$scriptsBase/init"
 
-bin="$remapper/build/install/MC-Remapper/bin"
+bin="$remapper/target"
+jarDownload="https://launcher.mojang.com/v1/objects/c8f83c5655308435b3dcf03c06d9fe8740a77469/server.jar" # 1.18.2
+mappingDownload="https://launcher.mojang.com/v1/objects/e562f588fea155d96291267465dc3323bfe1551b/server.txt" # 1.18.2
+jarPath="$remapper/server.jar"
 jar="$quiltflower/Server-${VERSION}.jar"
+mappingLocation="$remapper/server.txt"
 
 (
 
@@ -19,10 +23,13 @@ jar="$quiltflower/Server-${VERSION}.jar"
         git submodule update --init --recursive
     fi
     cd "$remapper"
-    ./gradlew installDist
+    curl -o $jarDownload
+    curl -o $mappingDownload
+    mvn clean install
 
     cd "$bin"
     delete "$quiltflower" "mkdir"
-    ./MC-Remapper server ${VERSION} --output $jar --fixlocalvar=rename --thread 6
+    java -jar SpecialSource-1.11.0.jar -live -i -q "$jarPath" -o "$jar" -m "$mappingLocation"
+    #./MC-Remapper server ${VERSION} --output $jar --fixlocalvar=rename --thread 6
 
 ) || exit 1
