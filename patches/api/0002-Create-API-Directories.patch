@@ -1,0 +1,29 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: RackDev <rackdev@rackdevelopment.net>
+Date: Sat, 10 Sep 2022 7:19 PM
+Subject: [PATCH] Wyvern-API Directories
+
+Index: src/main/resources/.gitkeep
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/resources/.gitkeep b/src/main/resources/.gitkeep
+new file mode 100644
+--- /dev/null	(date 1662850905512)
++++ b/src/main/resources/.gitkeep	(date 1662850905512)
+@@ -0,0 +1,1 @@
++.gitkeep
+\ No newline at end of file
+Index: src/main/java/.gitkeep
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/.gitkeep b/src/main/java/.gitkeep
+new file mode 100644
+--- /dev/null	(date 1662850905457)
++++ b/src/main/java/.gitkeep	(date 1662850905457)
+@@ -0,0 +1,1 @@
++.gitkeep
+\ No newline at end of file

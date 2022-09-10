@@ -8,7 +8,7 @@ VERSION="1.18.2"
 basedir="$(cd $scriptsBase/../ && pwd -P)"
 patchDir="$basedir/patches"
 workdir="$basedir/work"
-quiltflower="$workdir/QuiltFlower"
+fernflower="$workdir/FernFlower"
 remapper="$workdir/SpecialSource"
 
 # Functions

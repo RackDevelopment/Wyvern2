@@ -13,23 +13,24 @@ scriptsBase="$(dirname "$SOURCE")"
 bin="$remapper/target"
 jarDownload="https://launcher.mojang.com/v1/objects/c8f83c5655308435b3dcf03c06d9fe8740a77469/server.jar" # 1.18.2
 mappingDownload="https://launcher.mojang.com/v1/objects/e562f588fea155d96291267465dc3323bfe1551b/server.txt" # 1.18.2
-jarPath="$remapper/server.jar"
-jar="$quiltflower/Server-${VERSION}.jar"
+jarPath="$remapper/META-INF/versions/${VERSION}/server-${VERSION}.jar"
+jar="$fernflower/server-${VERSION}.jar"
 mappingLocation="$remapper/server.txt"
 
 (
 
     if [[ ! -d "$bin" ]]; then
-        git submodule update --init --recursive
+        git submodule update --recursive -f
     fi
     cd "$remapper"
-    curl -o $jarDownload
-    curl -o $mappingDownload
+    curl https://launcher.mojang.com/v1/objects/c8f83c5655308435b3dcf03c06d9fe8740a77469/server.jar > server-bundle.jar
+    jar xf server-bundle.jar META-INF/versions/${VERSION}/server-${VERSION}.jar
+    curl https://launcher.mojang.com/v1/objects/e562f588fea155d96291267465dc3323bfe1551b/server.txt -O
     mvn clean install
 
     cd "$bin"
-    delete "$quiltflower" "mkdir"
-    java -jar SpecialSource-1.11.0.jar -live -i -q "$jarPath" -o "$jar" -m "$mappingLocation"
+    delete "$fernflower" "mkdir"
+    java -jar SpecialSource-1.11.0-shaded.jar -live -i "$jarPath" -o "$jar" -m "$mappingLocation"
     #./MC-Remapper server ${VERSION} --output $jar --fixlocalvar=rename --thread 6
 
 ) || exit 1
