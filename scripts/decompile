@@ -10,19 +10,13 @@ done
 scriptsBase="$(dirname "$SOURCE")"
 . "$scriptsBase/init"
 
-previousVersion=""
-currentVersion="1.8.1"
-
-extractClassOutput="$quiltflower/classes"
-srcOutput="$quiltflower/minecraft/src/main/"
+extractClassOutput="$fernflower/classes"
+srcOutput="$fernflower/minecraft/src/main/"
 classOutput="$srcOutput/java"
 resourcesOutput="$srcOutput/resources"
 
-jar="$quiltflower/Server-${VERSION}.jar"
-previousDecompiler="$quiltflower/quiltflower-$previousVersion.jar"
-decompiler="$quiltflower/quiltflower-$currentVersion.jar"
-
-downloadURL="https://github.com/QuiltMC/quiltflower/releases/download/$currentVersion/quiltflower-$currentVersion.jar"
+jar="$fernflower/Server-${VERSION}.jar"
+decompiler="$fernflower/build/libs/fernflower.jar"
 
 (
 
@@ -58,9 +52,12 @@ downloadURL="https://github.com/QuiltMC/quiltflower/releases/download/$currentVe
 
     echo "  Decompiling classes..."
     echo ""
-      cd "$basedir"
-      delete "$previousDecompiler"
-      curl -L -o $decompiler $downloadURL
+
+      git submodule update --recursive -f
+
+      cd "$fernflower"
+      pwd
+      ./gradlew build
 
       java -jar "$decompiler" -dgs=1 -hdc=0 -asc=1 -rsy=1 -aoa=1 --legacy-saving -jvn=1 -ind='    ' "$extractClassOutput" "$classOutput"
 

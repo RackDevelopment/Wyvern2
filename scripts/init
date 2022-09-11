@@ -8,8 +8,8 @@ VERSION="1.18.2"
 basedir="$(cd $scriptsBase/../ && pwd -P)"
 patchDir="$basedir/patches"
 workdir="$basedir/work"
-quiltflower="$workdir/QuiltFlower"
-remapper="$workdir/MC-Remapper"
+fernflower="$workdir/FernFlower"
+remapper="$workdir/SpecialSource"
 
 # Functions
 function change_line {
