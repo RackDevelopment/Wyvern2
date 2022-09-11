@@ -19,18 +19,16 @@ mappingLocation="$remapper/server.txt"
 
 (
 
-    if [[ ! -d "$bin" ]]; then
-        git submodule update --recursive -f
-    fi
+    git submodule update --init --recursive
+	mvn clean install
     cd "$remapper"
-    curl https://launcher.mojang.com/v1/objects/c8f83c5655308435b3dcf03c06d9fe8740a77469/server.jar > server-bundle.jar
+    curl "$jarDownload" > server-bundle.jar
     jar xf server-bundle.jar META-INF/versions/${VERSION}/server-${VERSION}.jar
-    curl https://launcher.mojang.com/v1/objects/e562f588fea155d96291267465dc3323bfe1551b/server.txt -O
+    curl "$mappingDownload"	-O
     mvn clean install
 
     cd "$bin"
     delete "$fernflower" "mkdir"
     java -jar SpecialSource-1.11.0-shaded.jar -live -i "$jarPath" -o "$jar" -m "$mappingLocation"
-    #./MC-Remapper server ${VERSION} --output $jar --fixlocalvar=rename --thread 6
 
 ) || exit 1
