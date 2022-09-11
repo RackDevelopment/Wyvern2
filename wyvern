@@ -25,6 +25,7 @@ case "$1" in
         echo "Wyvern is an active project focuses on improving vanilla Minecraft without sacrificing"
         echo "any expected behaviors or features. We provides several scripts for you to interact with"
         echo "this repository just as easy as a breeze"
+		echo "Currently Building 1.19.2"
         echo ""
         echo "  List of commands:"
         echo "    apply    │  decompile then apply patches on top of Minecraft"
