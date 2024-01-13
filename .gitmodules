@@ -1,6 +1,6 @@
 [submodule "work/SpecialSource"]
-	path = work/SpecialSource
-	url = https://github.com/md-5/SpecialSource
+    path = work/SpecialSource
+    url = https://github.com/OpticFusion1/SpecialSource
 [submodule "work/FernFlower"]
-	path = work/FernFlower
-	url = https://github.com/fesh0r/fernflower
+    path = work/FernFlower
+    url = https://github.com/OpticFusion1/fernflower

@@ -15,6 +15,7 @@ jarDownload="https://launcher.mojang.com/v1/objects/c8f83c5655308435b3dcf03c06d9
 mappingDownload="https://launcher.mojang.com/v1/objects/e562f588fea155d96291267465dc3323bfe1551b/server.txt" # 1.18.2
 jarPath="$remapper/META-INF/versions/${VERSION}/server-${VERSION}.jar"
 jar="$fernflower/server-${VERSION}.jar"
+ssJar="SpecialSource-1.11.4-SNAPSHOT-shaded.jar"
 mappingLocation="$remapper/server.txt"
 
 (
@@ -29,6 +30,6 @@ mappingLocation="$remapper/server.txt"
 
     cd "$bin"
     delete "$fernflower" "mkdir"
-    java -jar SpecialSource-1.11.0-shaded.jar -live -i "$jarPath" -o "$jar" -m "$mappingLocation"
+    java -jar "$ssJar" -live -i "$jarPath" -o "$jar" -m "$mappingLocation"
 
 ) || exit 1
