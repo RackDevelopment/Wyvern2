@@ -4,7 +4,3 @@
 [submodule "work/FernFlower"]
     path = work/FernFlower
     url = https://github.com/OpticFusion1/fernflower
-[submodule "work/Parchment"]
-	path = work/Parchment
-	url = https://github.com/ParchmentMC/Parchment.git
-	branch = versions/1.18.x
