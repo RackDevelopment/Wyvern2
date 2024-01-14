@@ -4,3 +4,7 @@
 [submodule "work/FernFlower"]
     path = work/FernFlower
     url = https://github.com/OpticFusion1/fernflower
+[submodule "work/Yarn"]
+	path = work/Yarn
+	url = https://github.com/FabricMC/yarn.git
+	branch = 1.18.2
