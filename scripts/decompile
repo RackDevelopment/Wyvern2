@@ -15,7 +15,7 @@ srcOutput="$fernflower/minecraft/src/main/"
 classOutput="$srcOutput/java"
 resourcesOutput="$srcOutput/resources"
 
-jar="$fernflower/Server-${VERSION}.jar"
+jar="$remapper/${VERSION}-named.jar"
 decompiler="$fernflower/build/libs/fernflower.jar"
 
 (

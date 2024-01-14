@@ -9,7 +9,7 @@ basedir="$(cd $scriptsBase/../ && pwd -P)"
 patchDir="$basedir/patches"
 workdir="$basedir/work"
 fernflower="$workdir/FernFlower"
-remapper="$workdir/SpecialSource"
+remapper="$workdir/Yarn"
 
 # Functions
 function change_line {

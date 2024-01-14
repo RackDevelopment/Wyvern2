@@ -49,7 +49,7 @@ function updateRemapper {
 
         local remapperChange=$(changelog $remapper)
         local changes=""
-        local disclaimer="MC-Remapper has released updates that appear to apply correctly."
+        local disclaimer="Remapper has released updates that appear to apply correctly."
 
         if [ -n "$remapperChange" ]; then
             changes="Changes:\n$remapperChange"
@@ -59,7 +59,7 @@ function updateRemapper {
             disclaimer="$1"
         fi
 
-        local log="Updated MC-Remapper\n\n${disclaimer}\n\n${changes}"
+        local log="Updated Remapper\n\n${disclaimer}\n\n${changes}"
         echo -e "$log" | git commit -F -
     )
 }
