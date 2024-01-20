@@ -15,17 +15,6 @@ function applyPatches {
     local patch_folder="$2"
 
     echo ""
-    delete "$basedir/$target" mkdir
-
-    cd "$basedir/$target"
-    git init > /dev/null 2>&1
-
-    # Reset to minecraft source
-    if [[ "$target" ==  "${NAME}-Server" ]]; then
-        cp -r "$fernflower/minecraft/src" ./
-        git add . > /dev/null 2>&1
-        git commit -m "Created $1" > /dev/null 2>&1
-    fi
 
     git config commit.gpgsign false
 
@@ -33,8 +22,14 @@ function applyPatches {
     echo "  Applying patches to $target... This can take a long time."
     echo ""
 
-    git am --abort >/dev/null 2>&1
-    git am --3way --whitespace=fix "$basedir/patches/$patch_folder/"*.patch
+    # apply patches from patch_folder to target using the patch bash command. Needs to do every .patch file in the directory
+
+    for patch in "$patchDir/$patch_folder"/*.patch; do
+        echo "  Applying patch $patch"
+        patch -f -p1 < "$patch"
+    done
+
+
 
     if [ "$?" != "0" ]; then
         echo ""

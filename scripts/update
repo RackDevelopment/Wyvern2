@@ -49,7 +49,7 @@ function updateRemapper {
 
         local remapperChange=$(changelog $remapper)
         local changes=""
-        local disclaimer="Remapper has released updates that appear to apply correctly."
+        local disclaimer="Yarn has released updates that appear to apply correctly."
 
         if [ -n "$remapperChange" ]; then
             changes="Changes:\n$remapperChange"

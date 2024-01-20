@@ -59,7 +59,7 @@ decompiler="$fernflower/build/libs/fernflower.jar"
       pwd
       ./gradlew build
 
-      java -jar "$decompiler" -dgs=1 -hdc=0 -asc=1 -rsy=1 -aoa=1 --legacy-saving -jvn=1 -ind='    ' "$extractClassOutput" "$classOutput"
+      java -jar "$decompiler" -log=ERROR -dgs=1 -hdc=0 -asc=1 -rsy=1 -aoa=1 --legacy-saving -jvn=1 -ind='    ' "$extractClassOutput" "$classOutput"
 
       if [ "$?" != "0" ]; then
         cd "$basedir"
